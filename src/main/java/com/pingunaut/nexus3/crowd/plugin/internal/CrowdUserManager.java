@@ -62,10 +62,21 @@ public class CrowdUserManager extends AbstractReadOnlyUserManager {
 	}
 
 	private User completeUserRolesAndSource(User user) {
+		return completeUserRolesAndSource(user, client.findRolesByUser(user.getUserId()));
+	}
+
+	private User completeUserRolesAndSource(User user, Set<String> roleIds) {
 		user.setSource(SOURCE);
-		Set<String> roles = client.findRolesByUser(user.getUserId());
-		user.setRoles(roles.stream().map(r -> new RoleIdentifier(SOURCE, r)).collect(Collectors.toSet()));
+		user.setRoles(roleIds.stream().map(r -> new RoleIdentifier(SOURCE, r)).collect(Collectors.toSet()));
 		return user;
+	}
+
+	private User getUserInternal(String userId) throws UserNotFoundException {
+		User u = client.findUserByUsername(userId);
+		if(u == null){
+			throw new UserNotFoundException(userId);
+		}
+		return u;
 	}
 
 	@Override
@@ -85,11 +96,13 @@ public class CrowdUserManager extends AbstractReadOnlyUserManager {
 
 	@Override
 	public User getUser(String userId) throws UserNotFoundException {
-		User u = client.findUserByUsername(userId);
-		if(u == null){
-			throw new UserNotFoundException(userId);
-		}
+		User u = getUserInternal(userId);
 		return completeUserRolesAndSource(u);
 	}
 
+	@Override
+	public User getUser(String userId, Set<String> roleIds) throws UserNotFoundException {
+		User u = getUserInternal(userId);
+		return completeUserRolesAndSource(u, roleIds);
+	}
 }
