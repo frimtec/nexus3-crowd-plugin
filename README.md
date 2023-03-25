@@ -1,12 +1,14 @@
-# Nexus3 Crowd Plugin
+# Nexus3 Crowd Plugin  [![setup automated][gitpod-shield]][gitpod]
+
+[![License][license-shield]][license]
+[![Code Coverage][codecov-shield]][codecov]
+
+[![Build Status][build-status-shield]][build-status]
+[![Deploy Status][deploy-status-shield]][deploy-status]
+
 This plugin adds a Crowd realm to Sonatype Nexus OSS and enables you to authenticate with Crowd Users and authorize with crowd roles.
 
 It works with Nexus 3.x and Crowd 2.x and 3.x
-
-![Java CI](https://github.com/martinspielmann/nexus3-crowd-plugin/workflows/Java%20CI/badge.svg)
-[![License](https://img.shields.io/badge/license-Apache%20License%202.0-green.svg)](https://github.com/martinspielmann/nexus3-crowd-plugin/blob/master/LICENSE)
-[![SonarQube Coverage](https://img.shields.io/sonar/https/sonarcloud.io/nexus3-crowd-plugin/coverage.svg)](https://sonarcloud.io/component_measures?id=nexus3-crowd-plugin&metric=coverage)
-
 
 ##### Directory naming convention:
 When Nexus gets downloaded and unzipped, there are typically two directories created:
@@ -191,3 +193,15 @@ karaf@root()>
 [![GitHub contributors](https://img.shields.io/github/contributors/martinspielmann/nexus3-crowd-plugin.svg)](https://github.com/martinspielmann/nexus3-crowd-plugin/graphs/contributors)
 
 Thanks to all contributors who helped to get this up and running
+
+[gitpod-shield]: https://img.shields.io/badge/Gitpod-ready_to_code-orange?logo=gitpod
+[gitpod]: https://gitpod.io/from-referrer/
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2023.svg
+[license-shield]: https://img.shields.io/github/license/frimtec/nexus3-crowd-plugin.svg
+[license]: https://opensource.org/licenses/Apache-2.0
+[build-status-shield]: https://github.com/frimtec/nexus3-crowd-plugin/workflows/Build/badge.svg
+[build-status]: https://github.com/frimtec/nexus3-crowd-plugin/actions?query=workflow%3ABuild
+[deploy-status-shield]: https://github.com/frimtec/nexus3-crowd-plugin/workflows/Deploy%20release/badge.svg
+[deploy-status]: https://github.com/frimtec/nexus3-crowd-plugin/actions?query=workflow%3A%22Deploy+release%22
+[codecov-shield]: https://codecov.io/gh/frimtec/nexus3-crowd-plugin/branch/master-frimtec/graph/badge.svg?token=3LRAWVA25O
+[codecov]: https://codecov.io/gh/frimtec/nexus3-crowd-plugin
