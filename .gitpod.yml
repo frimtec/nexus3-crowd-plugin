@@ -1,0 +1,5 @@
+tasks:
+  - name: Build
+    init: mvn clean package -PbuildKar
+
+
