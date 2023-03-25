@@ -33,12 +33,12 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -PbuildKar
 
-      - name: Upload zip to release
-        uses: actions/upload-release-asset@v1
+      - name: Upload kar bundle
+        uses: actions/upload-release-asset@v1.0.2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: ./target/nexus3-crowd-plugin-${{ steps.get_version.outputs.VERSION }}-bundle.kar
           asset_name: nexus3-crowd-plugin-${{ steps.get_version.outputs.VERSION }}-bundle.kar
-          asset_content_type: application/zip
+          asset_content_type: application/octet-stream
