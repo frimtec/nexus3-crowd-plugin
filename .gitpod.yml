@@ -15,7 +15,7 @@ tasks:
   - name: Nexus-Credentials
     init: gp sync-await nexus
     command: |
-      sleep 90
+      sleep 120
       echo "Credentials to login into nexus"
       echo "User     : admin"
       echo "Password : $(docker exec -it nexus /bin/bash -c 'cat /nexus-data/admin.password')"
