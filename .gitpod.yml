@@ -1,5 +1,26 @@
 tasks:
   - name: Build
-    init: mvn clean package -PbuildKar
+    init: |
+      mvn clean package -PbuildKar
+      gp sync-done build
 
+  - name: Nexus-Server
+    init: gp sync-await build
+    command: |
+      docker build -f target/etc/dockerfile -t nexus .
+      docker run -p 8081:8081 -d --rm --name nexus -ti nexus
+      gp sync-done nexus
+      docker logs --follow nexus
 
+  - name: Nexus-Credentials
+    init: gp sync-await nexus
+    command: |
+      sleep 90
+      echo "Credentials to login into nexus"
+      echo "User     : admin"
+      echo "Password : $(docker exec -it nexus /bin/bash -c 'cat /nexus-data/admin.password')"
+
+  - name: Crowd-Server
+    command: |
+      docker volume create --name crowdVolume
+      docker run -v crowdVolume:/var/atlassian/application-data/crowd --name="crowd" -p 8095:8095 atlassian/crowd

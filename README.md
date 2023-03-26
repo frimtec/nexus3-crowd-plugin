@@ -54,8 +54,10 @@ USER nexus
 #### 2. Run in Terminal
 
 ```
-docker build -t test .
-docker run --rm -ti test
+docker build -t nexus .
+docker run -p 8081:8081 --rm --name nexus -ti nexus
+docker exec -it nexus /bin/bash
+docker exec -it nexus /bin/bash -c "cat /nexus-data/admin.password; echo"
 ```
 
 ### Easiest Install

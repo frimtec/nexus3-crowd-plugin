@@ -17,6 +17,7 @@
 	<packaging>bundle</packaging>
 
 	<properties>
+		<nexus-docker.version>3.49.0</nexus-docker.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 		<maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
@@ -51,6 +52,13 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<targetPath>../etc</targetPath>
+				<directory>etc</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
