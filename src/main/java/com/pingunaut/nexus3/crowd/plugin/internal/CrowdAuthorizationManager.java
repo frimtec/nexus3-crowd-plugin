@@ -26,6 +26,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -81,5 +82,15 @@ public class CrowdAuthorizationManager extends AbstractReadOnlyAuthorizationMana
 	@Override
 	public Set<Role> listRoles() {
 		return client.findRoles();
+	}
+
+	@Override
+	public Privilege getPrivilegeByName(String privilegeName) throws NoSuchPrivilegeException {
+		throw new NoSuchPrivilegeException("Crowd plugin doesn't support privileges");
+	}
+
+	@Override
+	public List<Privilege> getPrivileges(Set<String> privilegeIds) {
+		throw new NoSuchPrivilegeException("Crowd plugin doesn't support privileges");
 	}
 }
