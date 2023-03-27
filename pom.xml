@@ -17,10 +17,12 @@
 	<packaging>bundle</packaging>
 
 	<properties>
-		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-		<jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-		<maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
-		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+		<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
+		<maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
+		<karaf-maven-plugin.version>4.4.3</karaf-maven-plugin.version>
+		<maven-bundle-plugin.version>5.1.8</maven-bundle-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -104,6 +106,7 @@
 			<plugin>
 				<groupId>org.apache.karaf.tooling</groupId>
 				<artifactId>karaf-maven-plugin</artifactId>
+				<version>${karaf-maven-plugin.version}</version>
 				<dependencies>
 					<dependency>
 						<groupId>javax.xml.bind</groupId>
@@ -130,6 +133,7 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
+				<version>${maven-bundle-plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
