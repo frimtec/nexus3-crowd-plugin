@@ -102,9 +102,7 @@ public class CrowdUserManager extends AbstractReadOnlyUserManager {
 
 	@Override
 	public User getUser(String userId, Set<String> roleIds) throws UserNotFoundException {
-		log.debug("getUser(%d, %d)", userId, roleIds);
 		User u = getUserInternal(userId);
-		log.debug("getUser({}, {}): {}", userId, roleIds, u);
 		if(roleIds == null) {
 			return completeUserRolesAndSource(u);
 		}
