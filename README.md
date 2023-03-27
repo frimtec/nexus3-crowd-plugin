@@ -1,21 +1,24 @@
 # Nexus3 Crowd Plugin  [![setup automated][gitpod-shield]][gitpod]
 
 [![License][license-shield]][license]
-![Project Maintenance][maintenance-shield]
 [![Code Coverage][codecov-shield]][codecov]
 
 [![Build Status][build-status-shield]][build-status]
 [![Deploy Status][deploy-status-shield]][deploy-status]
 
+
+---
+  ### Personal fork for working on the "Nexus3 Crowd Plugin".
+  Please use https://github.com/martinspielmann/nexus3-crowd-plugin to get releases.
+  
+  Branch Info:
+  - master: Synced from https://github.com/martinspielmann/nexus3-crowd-plugin
+  - master-frimtec: Personal branch with additional gitpod environment. 
+---
+
 This plugin adds a Crowd realm to Sonatype Nexus OSS and enables you to authenticate with Crowd Users and authorize with crowd roles.
 
-It works with Nexus 3.x and Crowd 2.x and 3.x.
-
-This is a fork of great repo https://github.com/martinspielmann/nexus3-crowd-plugin.
-The fork adds:
-* An easy development environment based on Gitpod with a running nexus and crowd server.
-* Release versions follow the schema ```<nexus-version>.<plugin-build>``` (e.g. ```3.49.0.1``` is the most recent version compatible with nexus ```3.49.0```).
-* Automated dependency updates with dependabot to keep plugin compatible with the newest nexus versions.
+It works with Nexus 3.x and Crowd 2.x and 3.x
 
 ##### Directory naming convention:
 When Nexus gets downloaded and unzipped, there are typically two directories created:
@@ -30,16 +33,59 @@ See [https://books.sonatype.com/nexus-book/reference3/install.html#directories](
 
 ## Installation
 
-Follow the three steps.
-More information on Sonatype website: https://help.sonatype.com/repomanager3/bundle-development/installing-bundles.
+### Test installation with docker
+#### 1. Use the following Dockerfile
+```
+FROM sonatype/nexus3
+
+USER root
+
+# Install curl
+RUN yum install -y curl
+
+# Download crowd plugin
+RUN curl -L https://github.com/martinspielmann/nexus3-crowd-plugin/releases/download/nexus3-crowd-plugin-3.8.2/nexus3-crowd-plugin-3.8.2.jar --output /opt/sonatype/nexus/system/nexus3-crowd-plugin.jar
+
+# Install plugin
+RUN echo "reference\:file\:nexus3-crowd-plugin.jar = 200" >> /opt/sonatype/nexus/etc/karaf/startup.properties
+
+# Add Crowd Config
+RUN touch /opt/sonatype/nexus/etc/crowd.properties
+RUN echo "crowd.server.url=https://jira.example.com" >> /opt/sonatype/nexus/etc/crowd.properties
+RUN echo "application.name=nexus" >> /opt/sonatype/nexus/etc/crowd.properties
+RUN echo "application.password=nexus" >> /opt/sonatype/nexus/etc/crowd.properties
+RUN echo "cache.authentication=false" >> /opt/sonatype/nexus/etc/crowd.properties
+
+# setup permissions
+RUN chown nexus:nexus -R /opt/sonatype/nexus
+
+USER nexus
+```
+#### 2. Run in Terminal
+
+```
+docker build -t test .
+docker run --rm -ti test
+```
+
+### Easiest Install
+
+Thanks to some upstream work in Nexus Repository (versions newer than 3.15), it's become a LOT easier to install a plugin. To install this format plugin, you can either build locally or download from github
+
+More information on Sonatype website: https://help.sonatype.com/repomanager3/bundle-development/installing-bundles
 
 #### Prerequisites
 * JDK 8 is installed
-* Sonatype Nexus OSS >= 3.49.0 is installed 
+* Sonatype Nexus OSS > 3.15 is installed 
 
-#### 1. Download matching release kar file into nexus **$install-dir**/deploy folder 
+#### 1. Download latest release (since plugin 3.8.2) kar into nexus **$install-dir**/deploy folder 
 
-Releases can be found here: https://github.com/frimtec/nexus3-crowd-plugin/releases
+Releases can be found here: https://github.com/martinspielmann/nexus3-crowd-plugin/releases
+
+```
+cd $install-dir/deploy/
+wget https://github.com/martinspielmann/nexus3-crowd-plugin/releases/download/nexus3-crowd-plugin-3.8.2/nexus3-crowd-plugin-3.8.2-SNAPSHOT-bundle.kar
+```
 
 #### 2. Create crowd.properties
 
@@ -59,6 +105,40 @@ timeout.connectionrequest=15000 (default is 15000)
 
 #### 3. Restart Nexus Repo
 
+### Other Install
+
+#### Prerequisites
+* JDK 8 is installed
+* Sonatype Nexus OSS 3.x is installed 
+
+#### 1. Download latest release jar into nexus system folder
+Releases can be found here: https://github.com/martinspielmann/nexus3-crowd-plugin/releases
+```
+cd $install-dir/system/
+wget https://github.com/martinspielmann/nexus3-crowd-plugin/releases/download/nexus3-crowd-plugin-3.8.2/nexus3-crowd-plugin-3.8.2.jar
+```
+
+#### 2. Add bundle to startup properties
+Append the following line to *startup.properties* file found in **$install-dir**/etc/karaf
+```
+reference\:file\:nexus3-crowd-plugin-3.8.2.jar = 200
+```
+
+#### 3. Create crowd.properties
+Create a *crowd.properties* file in **$install-dir**/etc<br/>
+The file has to contain the following properties:
+```
+crowd.server.url=http://localhost:8095/crowd (replace by your crowd url)
+application.name=nexus (replace by your nexus application name configured in crowd)
+application.password=nexus (replace by your nexus application password configured in crowd)
+cache.authentication=false (should authentication be cached? default is false)
+
+# optional:
+timeout.connect=15000 (default is 15000)
+timeout.socket=15000 (default is 15000)
+timeout.connectionrequest=15000 (default is 15000)
+```
+  
 ## Usage
 #### 1. Activate Plugin
 After installation you have to activate the plugin in the administration frontend.
@@ -120,13 +200,12 @@ karaf@root()>
   ```
 
 ## Contributing
-[![GitHub contributors](https://img.shields.io/github/contributors/frimtec/nexus3-crowd-plugin.svg)](https://github.com/frimtec/nexus3-crowd-plugin/graphs/contributors)
+[![GitHub contributors](https://img.shields.io/github/contributors/martinspielmann/nexus3-crowd-plugin.svg)](https://github.com/martinspielmann/nexus3-crowd-plugin/graphs/contributors)
 
-Thanks to all contributors who helped to get this up and running.
+Thanks to all contributors who helped to get this up and running
 
 [gitpod-shield]: https://img.shields.io/badge/Gitpod-ready_to_code-orange?logo=gitpod
 [gitpod]: https://gitpod.io/from-referrer/
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2023.svg
 [license-shield]: https://img.shields.io/github/license/frimtec/nexus3-crowd-plugin.svg
 [license]: https://opensource.org/licenses/Apache-2.0
 [build-status-shield]: https://github.com/frimtec/nexus3-crowd-plugin/workflows/Build/badge.svg
