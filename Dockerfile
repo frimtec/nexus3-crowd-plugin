@@ -1,10 +1,10 @@
-FROM sonatype/nexus3:${nexus-docker.version}
+FROM sonatype/nexus3:3.49.0
 
 USER root
 
 # Add nexus-crowd-plugin
+COPY etc/crowd.properties /opt/sonatype/nexus/etc/crowd.properties
 COPY target/nexus3-crowd-plugin-0-SNAPSHOT-bundle.kar /opt/sonatype/nexus/deploy
-COPY target/etc/crowd.properties /opt/sonatype/nexus/etc/crowd.properties
 
 # setup permissions
 RUN chown nexus:nexus -R /opt/sonatype/nexus
