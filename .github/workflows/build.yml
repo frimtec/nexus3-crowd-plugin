@@ -28,7 +28,7 @@ jobs:
       - uses: codecov/codecov-action@v3.1.4
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: nexus3-crowd-plugin-bundle.kar
           path: ./target/nexus3-crowd-plugin-0-SNAPSHOT-bundle.kar
