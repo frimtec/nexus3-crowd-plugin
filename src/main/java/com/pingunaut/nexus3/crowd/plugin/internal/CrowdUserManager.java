@@ -108,4 +108,9 @@ public class CrowdUserManager extends AbstractReadOnlyUserManager {
 		}
 		return completeUserRolesAndSource(u, roleIds);
 	}
+
+	@Override
+	public boolean isConfigured() {
+		return false;
+	}
 }
