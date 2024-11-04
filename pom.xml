@@ -19,7 +19,7 @@
 	<properties>
 		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 		<jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
-		<maven-surefire-plugin.version>3.5.1</maven-surefire-plugin.version>
+		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 		<maven-javadoc-plugin.version>3.10.1</maven-javadoc-plugin.version>
 		<karaf-maven-plugin.version>4.4.6</karaf-maven-plugin.version>
 		<maven-bundle-plugin.version>5.1.9</maven-bundle-plugin.version>
