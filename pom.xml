@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.sonatype.nexus.plugins</groupId>
 		<artifactId>nexus-plugins</artifactId>
-		<version>3.71.0-06</version>
+		<version>3.74.0-05</version>
 	</parent>
 
 	<groupId>com.pingunaut.nexus</groupId>
@@ -55,10 +55,25 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
+				<version>3.8.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-compiler</artifactId>
+						<version>3.7.0</version>
+						<scope>compile</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-eclipse-batch</artifactId>
+						<version>3.0.8-01</version>
+						<scope>compile</scope>
+					</dependency>
+				</dependencies>
 				<configuration>
+					<source>17</source>
+					<target>17</target>
 					<compilerId>javac</compilerId>
 				</configuration>
 			</plugin>
