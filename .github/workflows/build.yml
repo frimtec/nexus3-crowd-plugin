@@ -30,6 +30,8 @@ jobs:
         run: mvn jacoco:prepare-agent test jacoco:report
 
       - uses: codecov/codecov-action@v5.0.2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}      
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
