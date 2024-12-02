@@ -22,7 +22,7 @@
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 		<maven-javadoc-plugin.version>3.11.1</maven-javadoc-plugin.version>
 		<karaf-maven-plugin.version>4.4.6</karaf-maven-plugin.version>
-		<maven-bundle-plugin.version>5.1.9</maven-bundle-plugin.version>
+		<maven-bundle-plugin.version>6.0.0</maven-bundle-plugin.version>
 	</properties>
 
 	<dependencies>
