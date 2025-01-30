@@ -38,8 +38,9 @@ public class CrowdProperties {
     public CrowdProperties() {
         configuration = new Properties();
         try {
-            Path p = Paths.get(System.getProperty("karaf.data"), "etc", CONFIG_FILE);
-            if (!Files.exists(p)) {
+            String dataPath = System.getProperty("karaf.data");
+            Path p = dataPath != null ? Paths.get(dataPath, "etc", CONFIG_FILE) : null;
+            if (p == null || !Files.exists(p)) {
                 LOGGER.warn("DEPRECATION: Please place your crowd.properties  in the $data-dir/etc/ to be able to update without copy manual copy steps");
                 p = Paths.get(".", "etc", CONFIG_FILE);
             }
