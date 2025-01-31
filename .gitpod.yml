@@ -1,4 +1,7 @@
 tasks:
+  - name: Setup jdk-17
+    before: sdk install java 17.0.4.1-tem < /dev/null
+
   - name: Build
     init: |
       mvn clean package -PbuildKar
