@@ -8,21 +8,21 @@
 
 
 ---
-  ### Personal fork for working on the "Nexus3 Crowd Plugin".
-  Please use https://github.com/martinspielmann/nexus3-crowd-plugin to get releases.
-  
-  Branch Info:
-  - master: Synced from https://github.com/martinspielmann/nexus3-crowd-plugin
-  - master-frimtec: Personal branch with additional gitpod environment. 
----
-
----
 **_Contributions Only:_**
 _This fork will no longer be maintained after March 2025.
 So all future development will come from pull requests submitted by the community.  
 What I will do:_
 * _review pull requests_
 * _publish new releases upon request_
+---
+
+---
+  ### Personal fork for working on the "Nexus3 Crowd Plugin".
+  Please use https://github.com/martinspielmann/nexus3-crowd-plugin to get releases.
+  
+  Branch Info:
+  - master: Synced from https://github.com/martinspielmann/nexus3-crowd-plugin
+  - master-frimtec: Personal branch with additional gitpod environment. 
 ---
 
 This plugin adds a Crowd realm to Sonatype Nexus OSS and enables you to authenticate with Crowd Users and authorize with crowd roles.
