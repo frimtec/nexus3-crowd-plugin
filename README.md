@@ -16,6 +16,15 @@
   - master-frimtec: Personal branch with additional gitpod environment. 
 ---
 
+---
+**_Contributions Only:_**
+_This fork will no longer be maintained after March 2025.
+So all future development will come from pull requests submitted by the community.  
+What I will do:_
+* _review pull requests_
+* _publish new releases upon request_
+---
+
 This plugin adds a Crowd realm to Sonatype Nexus OSS and enables you to authenticate with Crowd Users and authorize with crowd roles.
 
 It works with Nexus 3.x and Crowd 2.x and 3.x
